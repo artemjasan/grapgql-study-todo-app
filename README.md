@@ -1,8 +1,7 @@
-# Backend part of Product aggregator
+# Todo app with GraphQL and FastAPI
 A Small todo application to study GraphQL and integration with python projects.
 
 ## Start here
-This is the `api` part of the `Product Aggregator`.
 
 For that project I've used the following technologies:
 - [Python 3.10](https://www.python.org/downloads/release/python-3104/)

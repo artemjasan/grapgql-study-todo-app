@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  web_app:
+    container_name: web_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: poetry run uvicorn app.main:make_app --factory --host=0.0.0.0 --port=8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/graphql-study-todo-app/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready -U postgres
+      timeout: 20s
+      retries: 3
+    container_name: db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  pg_admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - "5050:5050"
+    restart: unless-stopped
+    container_name: pg_admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    logging:
+      driver: none
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+  pgadmin-data:

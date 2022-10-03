@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "graphql-study"
+version = "0.1.0"
+description = ""
+authors = ["Artem Jasan <artem.jasan@applifting.cz>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.85.0"
+uvicorn = "^0.18.3"
+SQLAlchemy = "^1.4.41"
+psycopg-binary = "^3.1.2"
+asyncpg = "^0.26.0"
+alembic = "^1.8.1"
+ariadne = "^0.16.1"
+passlib = "^1.7.4"
+python-jose = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

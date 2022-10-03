@@ -94,8 +94,8 @@ async def resolve_update_todo_item(obj, info, id, description=None, date=None):
             in_date_format = datetime.date.fromisoformat(date)
             new_data.update({"date": in_date_format})
 
-        # Check if exist new data to update current todo_item. If not -> return current object with origin data.
-        if len(new_data) == 0:
+        # Check if exist new data to update current todo_item, otherwise returns current object with origin data.
+        if not new_data:
             return {
                 "todo": current_object
             }
